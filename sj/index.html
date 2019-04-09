@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sijiao</title>
+	<!-- <link rel="stylesheet" type="text/css" href="style/style.css"> -->
+	<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	 <script src="http://probe.bjmantis.net/chat/jquery-1.12.4.min.js"></script>
+    <script src="http://chatn5.bjmantis.net/chat/js/dist/mantis.min.js?6112#5bd174ccab2d3651e81e9fff"></script>
+    <!--螳螂-->
+    <script src='http://talk2.bjmantis.net/chat/js/dist/register_form.min.js'></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+	<script>
+		var pixelRatio = 1 / window.devicePixelRatio;    //还原设备的真实分辨率；  
+		//devicePixelRatio设备的像素比   像素比：物理像素/逻辑像素；          
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixelRatio+',minimum-scale='+pixelRatio+',maximum-scale='+pixelRatio+'" />');
+
+		var html=document.getElementsByTagName('html')[0];   //获取每个型号的手的html元素
+		var pageWidth=html.getBoundingClientRect().width;   //获取每个型号的手的宽度
+		html.style.fontSize=pageWidth/10+"px";        //除10获取每个型号手机的根元素字体大小    
+		//rem是相对于根元素   动态的获取每个型号手机下面根元素的字体大小              
+	</script>
+</head>
+<body>
+	<div id="app">
+		<div class="header"onclick="mantis.requestChat()">
+			<img src="images/11.jpg" alt="">
+		</div>
+		<div id="second">
+			<form action="" method="get"id="wrap1"> 
+			1.您目前的学历<i>*</i><br />
+			<label><input name="xl" type="radio" value="初中及以下" />初中及以下 </label> 
+			<label><input name="xl" type="radio" value="高中，高职或技校" />高中，高职或技校 </label> 
+			<label><input name="xl" type="radio" value="专科" />专科 </label> 
+			<label><input name="xl" type="radio" value="本科及以上" />本科及以上</label> 
+			<label><input name="xl" type="radio" value="其它" />其它 </label> 
+			</form> 
+			<form action="" method="get" id="wrap2"> 
+			2.您年龄区间<i>*</i><br />
+			<label><input name="qj" type="radio" value="18-24岁" />18-24岁</label> 
+			<label><input name="qj" type="radio" value="25-34岁" />25-34岁 </label> 
+			<label><input name="qj" type="radio" value="35-44岁" />35-44岁 </label> 
+			<label><input name="qj" type="radio" value="44岁以上" />44岁以上</label> 
+			</form> 
+			<form action="" method="get"id="wrap3"> 
+			3.您目标院校<i>*</i><br />
+			<label><input name="mb" type="radio" value="985/211名校" />985/211名校</label> 
+			<label><input name="mb" type="radio" value="普通本科院校" />普通本科院校</label> 
+			<label><input name="mb" type="radio" value="其它" />其它 </label> 
+			</form> 
+			<div id="input">
+			<div class="input1"><span>您的姓名<i>*</i></span><input type="" class="inp" id="tel1" placeholder="请输入姓名">	</div>	
+				<div class="input1"><span>手机号码<i>*</i></span><input type="" class="inp" id="tel" placeholder="请输入手机号码">	</div>	
+				<button id="sub2">提交获取评测结果</button>
+			</div>
+			<img src="images/cip_ml_picf4b263ba-7a69-463a-8f97-25b7a6f8b4ee.jpeg" alt=""onclick="mantis.requestChat()">
+			<img src="images/21.jpg" alt=""onclick="mantis.requestChat()">
+			<img src="images/3.jpg" alt=""onclick="mantis.requestChat()">
+			<img src="images/4.jpg" alt=""onclick="mantis.requestChat()">
+			<img src="images/22.jpg" alt=""onclick="mantis.requestChat()">
+			<div id="input">
+			<div class="input1"><span>您的姓名<i>*</i></span><input type="" class="inp" placeholder=" id="tel1"请输入姓名">	</div>	
+				<div class="input1"><span>手机号码<i>*</i></span><input type="" class="inp" id="tel"  placeholder="请输入手机号码">	</div>	
+				<button>提交获取评测结果</button>
+			</div>
+
+		</div>
+	</div>
+</body>
+<script>
+	$(document).ready(function() {
+                $('#sub2').click(function(e) {
+                    //用手机留言发起按钮的选择器替换#more
+                    var stPhone = $('#tel').val(); //用手机留言输入框的选择器替stPhone   
+                    if(stPhone == '') {
+                        alert("请填写您的手机号码");
+                        return false;
+                    }
+                    var re = /^1[3,5,8,9,4,6,7]\d{9}$/;
+                    if(!re.test(stPhone)) {
+                        alert("请输入11位正确的手机号！");
+                        return false;
+                    } else {
+                        alert('恭喜你，提交成功！');
+                    }
+                    var content = '学历层次是：' + $('#radio1').val() + ';毕业年限：' + $('#radio2').val() + ';年龄段：' + $('#radio3').val() + ';取证目的：' + $('#radio4').val() + ';取证方式：' + $('#radio5').val();
+                    sendPage($('#tel').val(), '', content, {});
+                });
+            });
+</script>
+</html>
